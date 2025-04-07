@@ -297,5 +297,57 @@ AI가 제공하는 답변의 신뢰도를 출처를 통해 검증해야 함
 ⚠️ 응답 속도  
 AI 검색은 일반 검색보다 시간이 더 걸릴 수 있음  
 
+<mission>        
+0부터 255숫자의 정수를 입력받아 이진수로 출력하고, 1의개수가 몇개인지,상위 8비트 중에 왼쪽의 4비트도 출력하는 c프로그램 작성하기        
+#include <stdio.h>
 
+// 이진수 변환 및 출력 함수
+void printBinary(int num) {
+    for (int i = 7; i >= 0; i--) {
+        printf("%d", (num >> i) & 1);
+    }
+}
+
+// 1의 개수 계산 함수
+int countOnes(int num) {
+    int count = 0;
+    while (num) {
+        count += num & 1;
+        num >>= 1;
+    }
+    return count;
+}
+
+int main() {
+    int num;
+
+    // 사용자 입력 받기
+    printf("0부터 255 사이의 정수를 입력하세요: ");
+    scanf("%d", &num);
+
+    // 입력값이 유효한지 확인
+    if (num < 0 || num > 255) {
+        printf("잘못된 입력입니다. 0~255 사이의 숫자를 입력해주세요.\n");
+        return 1;
+    }
+
+    // 이진수 출력
+    printf("입력한 숫자의 8비트 이진수: ");
+    printBinary(num);
+    printf("\n");
+
+    // 1의 개수 출력
+    int onesCount = countOnes(num);
+    printf("1의 개수: %d\n", onesCount);
+
+    // 상위 8비트 중 왼쪽 4비트 출력
+    int upper4Bits = (num >> 4) & 0x0F; // 상위 4비트 추출
+    printf("상위 8비트 중 왼쪽 4비트: ");
+    for (int i = 3; i >= 0; i--) {
+        printf("%d", (upper4Bits >> i) & 1);
+    }
+    printf("\n");
+
+    return 0;
+}
 
