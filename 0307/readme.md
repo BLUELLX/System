@@ -60,5 +60,9 @@ swap(가상 메모리) → RAM 크기의 1~2배
 USB 제거 후 부팅으로 확인  
 
 
+    GIT_COMMITTER_DATE="2025-03-07T10:00:00" git commit --amend --no-edit --date "2025-03-07T10:00:00"
+
+
+git push origin main --force
 
 
